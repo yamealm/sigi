@@ -18,7 +18,7 @@ public class UserDao extends GenericDao {
 	 
 	 //  Database credentials
 	   static final String USER = "root";
-	   static final String PASS = "1nt3r4xt3l3ph0nyDB";//cambia tu clave gordo 
+	   static final String PASS = "root";//cambio tu clave gordo y modifique tu driver de mysql en tu braund
 	 
 	 
 	public static User getUserByLoginPassword(String login, String password)
