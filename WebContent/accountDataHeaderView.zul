@@ -1,0 +1,25 @@
+
+<vlayout apply="com.args.sigi.complement.AccountDataHeaderViewController">
+
+
+    <hlayout>
+        <!--<label value="${c:l('common.account.type')}" style="color:grey;font-size:14px" />:-->
+        <label id="lblAccountType" value="" style="color:#424242;font-size:18px" />
+    </hlayout>
+    <hlayout>
+        <!--<label value="${c:l('common.account.name')}" style="color:grey;font-size:17px" />-->
+        <label id="lblAccountName" value="" style="color:#424242;font-size:17px" />
+    </hlayout>
+    <hlayout>
+        <label id="lblCurrentBalance" value="${c:l('common.label.balance')}" style="color:#424242;font-size:15px"/>
+        <label id="lblCurrentBalanceValue" value="" style="color:#B18904;font-size:15px"/>
+    </hlayout>
+         <hlayout>
+        <label id="lblAlopointsBalancecategoryElectonicPin" value="${c:l('common.label.alopoints.categoryElectonicPin')}" style="color:#424242;font-size:15px"/>
+        <label id="lblAlopointsBalancecategoryElectonicPinValue" value="" style="color:#B18904;font-size:13px"/>
+    </hlayout>
+    <!--<hlayout>
+        <label id="lblAlopointsBalancecategoryToUp" value="${c:l('common.label.alopoints.categoryToUp')}" style="color:#424242;font-size:15px"/>
+        <label id="lblAlopointsBalancecategoryToUpValue" value="" style="color:#B18904;font-size:13px"/>
+    </hlayout>-->
+</vlayout>

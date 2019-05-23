@@ -1,0 +1,17 @@
+
+<div width="970px" height="25px" class="main-menu" align="left" apply="com.args.sigi.complement.MenuOptionsController">
+    <hlayout>
+        <hlayout>
+        <button class="main-menu-button2" image="/images/icon-home.png" width="60px" height="28px" onClick="Executions.sendRedirect(&quot;loggedAccountView.zul&quot;)"/>
+        <button class="main-menu-button2" label="${c:l('page.about')}" height="28px" width="145px" onClick="Executions.sendRedirect(&quot;http://www.alodiga.us/index.php/es/alodiga/telefonia-equipos-voip.html&quot;)"/>
+        <button id="btnAccessNumbers" class="main-menu-button2" label="${c:l('page.accessNumbers')}" height="28px" width="145px"/>
+        <button id="btnTerms" class="main-menu-button2" label="${c:l('page.terms')}" height="28px" width="150px" />
+        <button id="btnRates" class="main-menu-button2" label="${c:l('page.rates')}" height="28px" width="145px" />
+        <button id="btnSpanish" class="main-menu-button2" label="${c:l('common.language.spanish')}" height="28px" width="145px" />
+        <button id="btnEnglish" class="main-menu-button2" label="${c:l('common.language.english')}" height="28px" width="145px" />
+        <button id="btnLogout" class="logout-menu-button" label="${c:l('common.logout')}" height="28px" width="145px" />
+
+    </hlayout>
+        
+    </hlayout>
+</div>

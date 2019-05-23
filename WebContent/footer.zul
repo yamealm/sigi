@@ -1,0 +1,30 @@
+
+<div align="center" style="background:#333; repeat center center; border:none;" height="115px" >
+    <div align="justify" style="background: transparent" apply="com.args.sigi.complement.FooterController" xmlns:h="http://www.w3.org/1999/xhtml" height="82px">
+        <separator/>
+        <h:marquee onmouseout="this.start()" onmouseover="this.stop()" behavior="scroll" direction="left" scrollamount="6">
+            <hlayout id="hltImages">
+            </hlayout>
+        </h:marquee>
+    </div>
+    <separator orient="horizontal"/>
+    <div align="center" style="background:#232323; repeat center center; border:none;" height="30px">
+        <hlayout>
+            <div></div>
+            <div align="center" width="980px" style="padding-top: 5px;">
+                <hlayout>
+                <label value="${c:l('page.copyright')}" style="color:#CDA869;"/>
+                <separator orient="vertical" bar="true"/>
+                <label value="${c:l('page.powerby')}" style="color:#837E76;"/>
+                <label value="CG Turbines," style="color:#CDA869; cursor:pointer;" onClick="Executions.sendRedirect(&quot;https://cgturbines.com.ar/&quot;)"/>
+                <separator/>
+                <separator/>
+                <separator/>
+                <separator/>
+           
+                </hlayout>
+            </div>
+            <div></div>
+        </hlayout>
+    </div>
+</div>
