@@ -201,3 +201,17 @@ CREATE TABLE `user_has_profile` (
   CONSTRAINT `fk_user_has_profile_has_enterprise_profile1` FOREIGN KEY (`profileId`) REFERENCES `profile` (`id`),
   CONSTRAINT `fk_user_has_profile_has_enterprise_user1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE  `services`.`profile_has_profile` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `parentId` bigint(3) NOT NULL,
+  `childId` bigint(3) NOT NULL,
+  `beginningDate` datetime NOT NULL,
+  `endingDate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_profile_has_profile_profile2` (`childId`),
+  KEY `fk_profile_has_profile_profile1` (`parentId`),
+  CONSTRAINT `fk_profile_has_profile_profile1` FOREIGN KEY (`parentId`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_profile_has_profile_profile2` FOREIGN KEY (`childId`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
