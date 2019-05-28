@@ -2,10 +2,11 @@ package com.args.sigi.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.args.sigi.exception.UserNotFoundException;
 import com.args.sigi.generic.dao.GenericDao;
@@ -74,4 +75,54 @@ public class UserDao extends GenericDao {
 	}
 	
 
+	public static List<User> listUser()throws SQLException, Exception, UserNotFoundException {
+		Connection conn = null;
+		Statement stmt = null;
+		List <User> users = new ArrayList<User>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection(DB_URL, USER, PASS);
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM user;";
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				User user = new User();
+				user.setId(rs.getLong("id"));
+				user.setName(rs.getString("name"));
+				user.setLastName(rs.getString("lastName"));
+				user.setLogin(rs.getString("login"));
+				user.setPassword(rs.getString("password"));
+				user.setEmail(rs.getString("email"));
+				user.setIsactive(rs.getBoolean("isActive"));
+				users.add(user);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+			throw new SQLException();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			}// nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			}// end finally try
+		}// end try
+		if (users.isEmpty()) {
+			throw new UserNotFoundException("User not found");
+		}
+		return users;
+	}
+	
 }
