@@ -1,36 +1,21 @@
 package com.args.sigi.object;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
-import com.alodiga.services.provider.commons.utils.QueryConstants;
-import javax.persistence.NamedQuery;
 
-@Entity
-@Table(name = "permission_has_profile")
-@NamedQuery(name = QueryConstants.DELETE_PERMISSION_HAS_PROFILE,
-query = "DELETE FROM PermissionHasProfile php WHERE php.profile.id=:profileId")
-public class PermissionHasProfile extends AbstractSPEntity implements Serializable {
+//@NamedQuery(name = QueryConstants.DELETE_PERMISSION_HAS_PROFILE,
+//query = "DELETE FROM PermissionHasProfile php WHERE php.profile.id=:profileId")
+public class PermissionHasProfile {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     //bi-directional many-to-one association to Permission
-    @ManyToOne
-    @JoinColumn(name = "permissionId")
-    private Permission permission;
+//    @ManyToOne
+//    @JoinColumn(name = "permissionId")
+    private Long permissionId;
     //bi-directional many-to-one association to Profile
-    @ManyToOne
-    @JoinColumn(name = "profileId")
-    private Profile profile;
+//    @ManyToOne
+//    @JoinColumn(name = "profileId")
+    private Long profileId;
 
     public PermissionHasProfile() {
     }
@@ -43,34 +28,25 @@ public class PermissionHasProfile extends AbstractSPEntity implements Serializab
         this.id = id;
     }
 
-    public Permission getPermission() {
-        return this.permission;
-    }
+    public Long getPermissionId() {
+		return permissionId;
+	}
 
-    public void setPermission(Permission permission) {
-        this.permission = permission;
-    }
+	public void setPermissionId(Long permissionId) {
+		this.permissionId = permissionId;
+	}
 
-    public Profile getProfile() {
-        return this.profile;
-    }
+	public Long getProfileId() {
+		return profileId;
+	}
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

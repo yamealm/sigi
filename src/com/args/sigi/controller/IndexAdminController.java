@@ -2,6 +2,7 @@ package com.args.sigi.controller;
 
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.zkoss.util.resource.Labels;
 import org.zkoss.zk.ui.Component;
@@ -59,6 +60,7 @@ public class IndexAdminController extends GenericAbstractController implements G
     		User user = new User();
     		try {
 				user = UserDao.getUserByLoginPassword(txtLogin.getText(), txtPassword.getText());
+				List<User> users = UserDao.listUser();
 				Executions.sendRedirect("loggedAccountView.zul");
 			} catch (UserNotFoundException e) {
 				   lblInfo.setValue(Labels.getLabel("error.invalid.login"));

@@ -1,23 +1,8 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-@Entity
-@Table(name = "permission")
-public class Permission extends AbstractSPEntity implements Serializable {
+public class Permission  {
 
     public static String LOG_IN = "User has logged in.";
     public static String LOG_OUT = "User has logged out.";
@@ -108,19 +93,16 @@ public class Permission extends AbstractSPEntity implements Serializable {
     public static Long LIST_BLACKIP = 89L;
     public static Long BALANCE_ADJUSMENT = 90L;
     
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String action;
     private boolean enabled;
     private String entity;
     private String name;
     //bi-directional many-to-one association to PermissionData
-    @OneToMany(mappedBy = "permission", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+//    @OneToMany(mappedBy = "permission", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<PermissionData> permissionData;
-    @ManyToOne
-    @JoinColumn(name = "permissionGroupId")
+//    @ManyToOne
+//    @JoinColumn(name = "permissionGroupId")
     private PermissionGroup permissionGroup;
 
     public Permission() {
@@ -188,7 +170,7 @@ public class Permission extends AbstractSPEntity implements Serializable {
     public PermissionData getPermissionDataByLanguageId(Long languageId) {
         PermissionData pd = null;
         for (PermissionData pData : this.permissionData) {
-            if (pData.getLanguage().getId().equals(languageId)) {
+            if (pData.getLanguageId()==(languageId)) {
                 pd = pData;
                 break;
             }
@@ -201,13 +183,5 @@ public class Permission extends AbstractSPEntity implements Serializable {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
 
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

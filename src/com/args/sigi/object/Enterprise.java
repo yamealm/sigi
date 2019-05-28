@@ -2,32 +2,12 @@ package com.args.sigi.object;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
+public class Enterprise  {
 
-import javax.persistence.FetchType;
+;
+    public static final Long CG_TURBINES = 1L;
 
-@Entity
-@Table(name = "enterprise")
-public class Enterprise extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    public static final Long ALODIGA_USA = 1L;
-    public static final Long ALODIGA_VENEZUELA = 2L;
-    public static final Long ALODIGA_COLOMBIA = 3L;
-    public static final Long ALODIGA_PANAMA = 4L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
     private String atcNumber;
@@ -39,19 +19,19 @@ public class Enterprise extends AbstractSPEntity implements Serializable {
     private String url;
     
     //bi-directional many-to-one association to Currency
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "currencyId")
-    private Currency currency;
+//    @ManyToOne(cascade = {CascadeType.REFRESH})
+//    @JoinColumn(name = "currencyId")
+    private int currencyId;
     //bi-directional many-to-one association to Country
-    @ManyToOne(cascade = {CascadeType.REFRESH})
-    @JoinColumn(name = "countryId")
-    private Country country;
+//    @ManyToOne(cascade = {CascadeType.REFRESH})
+//    @JoinColumn(name = "countryId")
+    private Long countryId;
     //bi-directional many-to-one association to EnterpriseHasTinType
-    @OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
-    private List<EnterpriseHasTinType> enterpriseHasTinTypes;
+//    @OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER, cascade = {CascadeType.REFRESH})
+//    private List<EnterpriseHasTinType> enterpriseHasTinTypes;
     //bi-directional many-to-one association to Preference
-    @OneToMany(mappedBy = "enterprise", cascade = {CascadeType.REFRESH})
-    private List<PreferenceValue> preferenceValues;
+//    @OneToMany(mappedBy = "enterprise", cascade = {CascadeType.REFRESH})
+//    private List<PreferenceValue> preferenceValues;
     //bi-directional many-to-one association to Tax
 
     public Enterprise() {
@@ -129,58 +109,43 @@ public class Enterprise extends AbstractSPEntity implements Serializable {
         this.url = url;
     }
 
-    public Currency getCurrency() {
-        return this.currency;
-    }
 
-    public void setCurrency(Currency currency) {
-        this.currency = currency;
-    }
-
-    public Country getCountry() {
-        return this.country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
-    public List<EnterpriseHasTinType> getEnterpriseHasTinTypes() {
-        return this.enterpriseHasTinTypes;
-    }
-
-    public void setEnterpriseHasTinTypes(List<EnterpriseHasTinType> enterpriseHasTinTypes) {
-        this.enterpriseHasTinTypes = enterpriseHasTinTypes;
-    }
-//    public List<Preference> getPreference() {
-//        return this.preference;
+//    public List<EnterpriseHasTinType> getEnterpriseHasTinTypes() {
+//        return this.enterpriseHasTinTypes;
 //    }
 //
-//    public void setPreference(List<Preference> preference) {
-//        this.preference = preference;
+//    public void setEnterpriseHasTinTypes(List<EnterpriseHasTinType> enterpriseHasTinTypes) {
+//        this.enterpriseHasTinTypes = enterpriseHasTinTypes;
+//    }
+//
+//
+//    public List<PreferenceValue> getPreferenceValues() {
+//        return this.preferenceValues;
+//    }
+//
+//    public void setPreferenceValues(List<PreferenceValue> preferenceValues) {
+//        this.preferenceValues = preferenceValues;
 //    }
 
-    public List<PreferenceValue> getPreferenceValues() {
-        return this.preferenceValues;
-    }
+    public int getCurrencyId() {
+		return currencyId;
+	}
 
-    public void setPreferenceValues(List<PreferenceValue> preferenceValues) {
-        this.preferenceValues = preferenceValues;
-    }
+	public void setCurrencyId(int currencyId) {
+		this.currencyId = currencyId;
+	}
 
-    @Override
+	public Long getCountryId() {
+		return countryId;
+	}
+
+	public void setCountryId(Long countryId) {
+		this.countryId = countryId;
+	}
+
+	@Override
     public String toString() {
         return super.toString();
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
     }
 
 }

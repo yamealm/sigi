@@ -1,15 +1,7 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
-import javax.persistence.*;
+public class Event  {
 
-@Entity
-@Table(name = "event")
-public class Event implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String description;
     private String name;

@@ -1,35 +1,21 @@
 package com.args.sigi.object;
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import java.io.Serializable;
-import javax.persistence.*;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "audit")
+public class Audit  {
 
-public class Audit extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+  
     private Long id;
     private Timestamp creationDate;
     private String extra;
-    @Lob()
     private String newValues;
-    @Lob()
     private String originalValues;
     private Long registerId;
     private String remoteIp;
     private String responsibleId;
     private String responsibleType;
     private String tableName;
-    //bi-directional many-to-one association to Event
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "eventId")
-    private Event event;
+    private Long event;
 
     public Audit() {
     }
@@ -106,30 +92,26 @@ public class Audit extends AbstractSPEntity implements Serializable {
         this.responsibleType = responsibleType;
     }
 
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
+   
+    public String getTableName() {
+		return tableName;
+	}
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
 
-    public Event getEvent() {
-        return this.event;
-    }
+	public Long getEvent() {
+		return event;
+	}
 
-    public void setEvent(Event event) {
-        this.event = event;
-    }
+	public void setEvent(Long event) {
+		this.event = event;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
     }
-}

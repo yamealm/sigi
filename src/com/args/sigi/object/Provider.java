@@ -1,38 +1,11 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
+public class Provider  {
 
-@Entity
-@Table(name = "provider")
-public class Provider extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    public static final int SISAC = 1;
-    public static final int EASY_CALL = 2;
-    public static final int TRANSFER_TO = 3;
-    public static final int MLAT = 4;
-    public static final int TELINTEL = 5;
-    public static final int EMIDA = 6; // No está en el requerimiento
-    public static final int MOBILE_PIN_INVENTORY = 7;
-    public static final int PREPAY_NATION = 8;
-    public static final int CSQ = 9;
-    public static final int KDDI = 10;
-    public static final int TWILIO = 11;
-    public static final int IDENTIDAD = 13;
-    
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   
     private Long id;
     private String name;
-    private String url;
-    private boolean isSMSProvider;
+    private String address;
     private boolean enabled;
 
     public Provider() {
@@ -58,28 +31,16 @@ public class Provider extends AbstractSPEntity implements Serializable {
         this.name = name;
     }
 
-    public String getUrl() {
-        return this.url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    public String getAddress() {
+		return address;
+	}
 
-    public boolean isIsSMSProvider() {
-        return this.isSMSProvider;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public void setIsSMSProvider(boolean isSMSProvider) {
-        this.isSMSProvider = isSMSProvider;
-    }
-
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
+	@Override
     public String toString() {
         return super.toString();
     }
@@ -92,11 +53,6 @@ public class Provider extends AbstractSPEntity implements Serializable {
         this.enabled = enabled;
     }
 
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 
     @Override
     public boolean equals(Object object) {

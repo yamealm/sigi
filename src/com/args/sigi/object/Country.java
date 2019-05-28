@@ -1,29 +1,10 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+public class Country  {
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
-
-@Entity
-@Table(name = "country")
-public class Country extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
     public static final Long USA = 47L;
     public static final Long VENEZUELA = 1L;
     public static final Long COLOMBIA = 35L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String shortName;
@@ -98,13 +79,4 @@ public class Country extends AbstractSPEntity implements Serializable {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

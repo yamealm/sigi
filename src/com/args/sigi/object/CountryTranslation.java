@@ -1,32 +1,16 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
+public class CountryTranslation  {
 
-@Entity
-@Table(name = "country_translation")
-public class CountryTranslation extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String alias;
     //bi-directional many-to-one association to Language
-    @ManyToOne
-    @JoinColumn(name = "languageId")
-    private Language language;
-    @ManyToOne
-    @JoinColumn(name = "countryId")
-    private Country country;
+//    @ManyToOne
+//    @JoinColumn(name = "languageId")
+    private int languageId;
+//    @ManyToOne
+//    @JoinColumn(name = "countryId")
+    private Long countryId;
 
     public CountryTranslation() {
     }
@@ -47,34 +31,26 @@ public class CountryTranslation extends AbstractSPEntity implements Serializable
         this.alias = alias;
     }
 
-    public Language getLanguage() {
-        return this.language;
-    }
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
+    public int getLanguageId() {
+		return languageId;
+	}
 
-    public Country getCountry() {
-        return country;
-    }
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
 
-    public void setCountry(Country country) {
-        this.country = country;
-    }
+	public Long getCountryId() {
+		return countryId;
+	}
 
-    @Override
+	public void setCountryId(Long countryId) {
+		this.countryId = countryId;
+	}
+
+	@Override
     public String toString() {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }

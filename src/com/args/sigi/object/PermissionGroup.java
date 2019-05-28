@@ -2,31 +2,14 @@ package com.args.sigi.object;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
+public class PermissionGroup {
 
-import javax.persistence.FetchType;
-
-@Entity
-@Table(name = "permission_group")
-public class PermissionGroup extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private boolean enabled;
     private String name;
     //bi-directional many-to-one association to PermissionGroupData
-    @OneToMany(mappedBy = "permissionGroup", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+//    @OneToMany(mappedBy = "permissionGroup", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
     private List<PermissionGroupData> permissionGroupData;
 
     public PermissionGroup() {
@@ -64,10 +47,10 @@ public class PermissionGroup extends AbstractSPEntity implements Serializable {
         this.permissionGroupData = permissionGroupData;
     }
 
-    public PermissionGroupData getPermissionGroupDataByLanguageId(Long languageId) {
+    public PermissionGroupData getPermissionGroupDataByLanguageId(int languageId) {
 
         for (PermissionGroupData pgData : this.permissionGroupData) {
-            if (pgData.getLanguage().getId().equals(languageId)) {
+            if (pgData.getLanguageId()==languageId) {
                 return pgData;
             }
         }
@@ -79,13 +62,5 @@ public class PermissionGroup extends AbstractSPEntity implements Serializable {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
+  
 }

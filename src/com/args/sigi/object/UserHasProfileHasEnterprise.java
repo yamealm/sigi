@@ -1,34 +1,10 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
-import com.alodiga.services.provider.commons.genericEJB.SPEntityListerner;
+public class UserHasProfileHasEnterprise {
 
-
-/**
- * The persistent class for the user_has_profile_has_enterprise database table.
- * 
- */
-@Entity
-@EntityListeners(SPEntityListerner.class)
-@Table(name="user_has_profile_has_enterprise")
-public class UserHasProfileHasEnterprise extends AbstractSPEntity implements Serializable {
-	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private Timestamp beginningDate;
@@ -36,19 +12,19 @@ public class UserHasProfileHasEnterprise extends AbstractSPEntity implements Ser
 	private Timestamp endingDate;
 
 	//bi-directional many-to-one association to Profile
-    @ManyToOne
-	@JoinColumn(name="userId")
-	private User user;
+//    @ManyToOne
+//	@JoinColumn(name="userId")
+	private Long userId;
     
 	//bi-directional many-to-one association to Profile
-    @ManyToOne
-	@JoinColumn(name="profileId")
-	private Profile profile;
+//    @ManyToOne
+//	@JoinColumn(name="profileId")
+	private Long profileId;
 
 	//bi-directional many-to-one association to Enterprise
-    @ManyToOne
-	@JoinColumn(name="enterpriseId")
-	private Enterprise enterprise;
+//    @ManyToOne
+//	@JoinColumn(name="enterpriseId")
+	private int enterpriseId;
 
     public UserHasProfileHasEnterprise() {
     }
@@ -77,38 +53,29 @@ public class UserHasProfileHasEnterprise extends AbstractSPEntity implements Ser
 		this.endingDate = endingDate;
 	}
 
-	public Profile getProfile() {
-		return this.profile;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
-	}
-	
-	public Enterprise getEnterprise() {
-		return this.enterprise;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
-	public void setEnterprise(Enterprise enterprise) {
-		this.enterprise = enterprise;
+	public Long getProfileId() {
+		return profileId;
 	}
 
-	public User getUser() {
-		return user;
+	public void setProfileId(Long profileId) {
+		this.profileId = profileId;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public int getEnterpriseId() {
+		return enterpriseId;
 	}
 
-	@Override
-	public Object getPk() {
-		return getId();
+	public void setEnterpriseId(int enterpriseId) {
+		this.enterpriseId = enterpriseId;
 	}
 
-	@Override
-	public String getTableName() throws TableNotFoundException{
-		return super.getTableName(this.getClass());
-	}
 	
 }

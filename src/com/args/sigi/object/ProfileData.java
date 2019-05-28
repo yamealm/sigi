@@ -1,35 +1,17 @@
 package com.args.sigi.object;
 
-import java.io.Serializable;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+public class ProfileData  {
 
-import com.alodiga.services.provider.commons.exceptions.TableNotFoundException;
-import com.alodiga.services.provider.commons.genericEJB.AbstractSPEntity;
-
-@Entity
-@Table(name = "profile_data")
-public class ProfileData extends AbstractSPEntity implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String alias;
     private String description;
     //bi-directional many-to-one association to Language
-    @ManyToOne
-    @JoinColumn(name = "languageId")
-    private Language language;
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "profileId")
-    private Profile profile;
+//    @ManyToOne
+//    @JoinColumn(name = "languageId")
+    private int languageId;
+//    @ManyToOne(cascade = {CascadeType.PERSIST})
+//    @JoinColumn(name = "profileId")
+    private Long profile;
 
     public ProfileData() {
     }
@@ -58,34 +40,25 @@ public class ProfileData extends AbstractSPEntity implements Serializable {
         this.description = description;
     }
 
-    public Language getLanguage() {
-        return this.language;
-    }
+    public int getLanguageId() {
+		return languageId;
+	}
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
+	public void setLanguageId(int languageId) {
+		this.languageId = languageId;
+	}
 
-    public Profile getProfile() {
-        return profile;
-    }
+	public Long getProfile() {
+		return profile;
+	}
 
-    public void setProfile(Profile profile) {
-        this.profile = profile;
-    }
+	public void setProfile(Long profile) {
+		this.profile = profile;
+	}
 
-    @Override
+	@Override
     public String toString() {
         return super.toString();
     }
 
-    @Override
-    public Object getPk() {
-        return getId();
-    }
-
-    @Override
-    public String getTableName() throws TableNotFoundException {
-        return super.getTableName(this.getClass());
-    }
 }
