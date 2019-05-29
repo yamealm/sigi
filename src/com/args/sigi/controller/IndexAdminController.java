@@ -18,6 +18,7 @@ import com.args.sigi.exception.UserNotFoundException;
 import com.args.sigi.generic.controller.GenericAbstractController;
 import com.args.sigi.generic.controller.GenericDistributionController;
 import com.args.sigi.object.User;
+import com.args.sigi.util.AccessControl;
 
 public class IndexAdminController extends GenericAbstractController implements GenericDistributionController {
 
@@ -54,14 +55,16 @@ public class IndexAdminController extends GenericAbstractController implements G
         }
         return valid;
     }
-
+    
+    
+    
     public void onClick$btnLogin() throws InterruptedException {
     	if(validateEmpty()){
     		User user = new User();
     		try {
 				user = UserDao.getUserByLoginPassword(txtLogin.getText(), txtPassword.getText());
-				List<User> users = UserDao.listUser();
-				Executions.sendRedirect("loggedAccountView.zul");
+				AccessControl.setCurrentAccount(user);
+				Executions.sendRedirect("home-admin.zul");
 			} catch (UserNotFoundException e) {
 				   lblInfo.setValue(Labels.getLabel("error.invalid.login"));
 			} catch (WrongValueException e) {

@@ -61,7 +61,7 @@ public class Permission  {
     public static Long LIST_TRANSACTION = 53L;
     public static Long AUTOMATIC_PROCESS = 54L;
     public static Long VIEW_TRANSACTION = 55L;
-    public static Long LIST_ACCOUNTS = 56L;
+    public static Long LIST_ACCOUNTS = 91L;
     public static Long ADD_ACCOUNT = 57L;
     public static Long EDIT_ACCOUNT = 58L;
     public static Long VIEW_ACCOUNT = 59L;
@@ -98,15 +98,17 @@ public class Permission  {
     private boolean enabled;
     private String entity;
     private String name;
+    private String permissionGroupId;
     //bi-directional many-to-one association to PermissionData
 //    @OneToMany(mappedBy = "permission", fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
-    private List<PermissionData> permissionData;
+//    private List<PermissionData> permissionData;
 //    @ManyToOne
 //    @JoinColumn(name = "permissionGroupId")
-    private PermissionGroup permissionGroup;
+//    private PermissionGroup permissionGroup;
 
     public Permission() {
     }
+    
     public Permission(Long id) {
         this.id = id;
     }
@@ -150,35 +152,44 @@ public class Permission  {
     public void setName(String name) {
         this.name = name;
     }
+    
+    
+    
 
-    public List<PermissionData> getPermissionData() {
-        return this.permissionData;
-    }
+//    public List<PermissionData> getPermissionData() {
+//        return this.permissionData;
+//    }
 
-    public void setPermissionData(List<PermissionData> permissionData) {
-        this.permissionData = permissionData;
-    }
+//    public void setPermissionData(List<PermissionData> permissionData) {
+//        this.permissionData = permissionData;
+//    }
+//
+//    public PermissionGroup getPermissionGroup() {
+//        return this.permissionGroup;
+//    }
 
-    public PermissionGroup getPermissionGroup() {
-        return this.permissionGroup;
-    }
+//    public void setPermissionGroup(PermissionGroup permissionGroup) {
+//        this.permissionGroup = permissionGroup;
+//    }
 
-    public void setPermissionGroup(PermissionGroup permissionGroup) {
-        this.permissionGroup = permissionGroup;
-    }
+//    public PermissionData getPermissionDataByLanguageId(Long languageId) {
+//        PermissionData pd = null;
+//        for (PermissionData pData : this.permissionData) {
+//            if (pData.getLanguageId()==(languageId)) {
+//                pd = pData;
+//                break;
+//            }
+//        }
+//        return pd;
+//    }
 
-    public PermissionData getPermissionDataByLanguageId(Long languageId) {
-        PermissionData pd = null;
-        for (PermissionData pData : this.permissionData) {
-            if (pData.getLanguageId()==(languageId)) {
-                pd = pData;
-                break;
-            }
-        }
-        return pd;
-    }
-
-    @Override
+    public String getPermissionGroupId() {
+		return permissionGroupId;
+	}
+	public void setPermissionGroupId(String permissionGroupId) {
+		this.permissionGroupId = permissionGroupId;
+	}
+	@Override
     public String toString() {
         return super.toString();
     }
