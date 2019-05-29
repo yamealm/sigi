@@ -44,6 +44,7 @@ public class AccessControlDao extends GenericDao {
 		if (profileId == null) {
 			throw new NullParameterException("Invalid profileId");
 		}
+		//yamelis
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
@@ -148,9 +149,9 @@ public class AccessControlDao extends GenericDao {
 				permission.setEntity(rs.getString("entity"));
 				PermissionData data = new PermissionData();
 				permissionDatas.add(data);
-				permission.setPermissionData(permissionDatas);
+//				permission.setPermissionData(permissionDatas);
 				PermissionGroup permissionGroup = new PermissionGroup();
-				permission.setPermissionGroup(permissionGroup);
+//				permission.setPermissionGroup(permissionGroup);
 				permissions.add(permission);
 			}
 			rs.close();
@@ -255,9 +256,9 @@ public class AccessControlDao extends GenericDao {
 				permission.setEntity(rs.getString("entity"));
 				PermissionData data = new PermissionData();
 				permissionDatas.add(data);
-				permission.setPermissionData(permissionDatas);
+//				permission.setPermissionData(permissionDatas);
 				PermissionGroup permissionGroup = new PermissionGroup();
-				permission.setPermissionGroup(permissionGroup);
+//				permission.setPermissionGroup(permissionGroup);
 			}
 			rs.close();
 			stmt.close();
